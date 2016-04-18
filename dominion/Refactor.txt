@@ -1,0 +1,1 @@
+I was able to refactor the smithy, the village, the greathall, the outpost, and the embargo cards. Most code was salvaged from the original switch statement, however modifications were made to pass the neccessary variables, with special care to pass the state by refrence. The embargo code also has the ability to pass back a -1 if the result is invalid.

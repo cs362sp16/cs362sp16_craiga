@@ -643,6 +643,74 @@ int getCost(int cardNumber)
   return -1;
 }
 
+int Smithy(struct gameState *state, int handPos){
+      //+3 Cards
+  int i=0;
+  int currentPlayer = whoseTurn(state);
+      for (i = 0; i < 2; i++)
+  {
+    drawCard(currentPlayer, state);
+  }
+      
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+}
+int Village(struct gameState *state, int handPos){
+      int currentPlayer = whoseTurn(state);
+      //+1 Card
+      drawCard(currentPlayer, state);
+      
+      //+2 Actions
+      state->numActions = state->numActions + 2;
+      
+      //discard played card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+return 0;
+}
+
+int GreatHall(struct gameState *state, int handPos)
+{
+      int currentPlayer = whoseTurn(state);
+      //+1 Card
+      drawCard(currentPlayer, state);
+      
+      //+1 Actions
+      state->numActions++;
+      
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+}
+int Embargo(struct gameState *state, int handPos, int choice1)
+{
+  int currentPlayer = whoseTurn(state);
+//+2 Coins
+      state->coins = state->coins + 1;
+      
+      //see if selected pile is in play
+      if ( state->supplyCount[choice1] == -1 )
+  {
+    return -1;
+  }
+      
+      //add embargo token to selected supply pile
+      state->embargoTokens[choice1]++;
+      
+      //trash card
+      discardCard(handPos, currentPlayer, state, 1);    
+      return 0;
+}
+int Outpost(struct gameState *state, int handPos){
+  int currentPlayer = whoseTurn(state);
+  //set outpost flag
+      state->outpostPlayed++;
+      
+      //discard card
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+  }
+
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
@@ -829,25 +897,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+       Smithy(state, handPos);
       return 0;
 		
     case village:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+2 Actions
-      state->numActions = state->numActions + 2;
-			
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+       Village(state, handPos);
       return 0;
 		
     case baron:
@@ -902,15 +956,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case great_hall:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+1 Actions
-      state->numActions++;
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+ {
+    GreatHall(state, handPos);
+    return 0;
+ }
 		
     case minion:
       //+1 action
@@ -1139,29 +1188,15 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 		
     case embargo: 
-      //+2 Coins
-      state->coins = state->coins + 2;
-			
-      //see if selected pile is in play
-      if ( state->supplyCount[choice1] == -1 )
-	{
-	  return -1;
-	}
-			
-      //add embargo token to selected supply pile
-      state->embargoTokens[choice1]++;
-			
-      //trash card
-      discardCard(handPos, currentPlayer, state, 1);		
-      return 0;
+    {
+    return Embargo(state, handPos, choice1);
+    }
 		
     case outpost:
-      //set outpost flag
-      state->outpostPlayed++;
-			
-      //discard card
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+      {
+        Outpost(state, handPos);
+        return 0;
+      }
 		
     case salvager:
       //+1 buy
