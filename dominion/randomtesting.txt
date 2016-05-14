@@ -1,0 +1,27 @@
+For RandomTestAdventure I populated the initial deck with all estates and placed two copper within the deck 
+randomly based upon the random seed given as input from the command line. The test runs the card effect and 
+then  checks to make sure that the hand size has changes correctly and that the cards added were monetary cards.
+Then it checks to make sure that no cards were lost in transit and counts the total number of overall cards to 
+make sure it has stayed the same.
+
+In randomtestcard1 I was testing the salvager card, the program took a random seed and populated the hand with 
+one of every card in the game, it then salvages a card based on the random seed. The assertions check that the 
+hand size is correct before and afer, the ammount of coins changes with the discard of the car, and that the 
+number of cards in the discard pile is increased appropriately. I found that the salvager card did not update the
+count of the number of discarded cards despite an attempt to discard the played salvager card which only discarded 
+the "current card".
+
+In randomtestcard2 I tested the garden card. I populated an deck with all copper with the size of the random 
+inpute, and then I tested to see if gardens had any effect when played. I cleared the hand and replaced it with
+a single garden and calculated the score for the current player. I compared the calculated the score against what 
+the score should be and I found it calculated the score as 0 despite the fact that it should have held values like 
+5 or 6 based on the random input values in the 50s and 60s. I then checked and realised that the score was 
+updating gardens' additional score but it would only count curse cards as cards and then devide the number of 
+curse cards by ten.
+
+I found many more bugs when using random testing, as the inputs were much more varied and since there were more 
+assertions and they were much more specific.
+
+I was unable to find test coverage as GCOV would not work with my code despite my best efforts to implement it. 
+However, I imagine due to the higher count of assertions and sheer code usage my random tests would have much 
+higher test coverage.

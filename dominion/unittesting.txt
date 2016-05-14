@@ -1,1 +1,2 @@
-I was able to essentially test each function and card effect for their inteded consequences and outputs by comparing them to their known correct values.
+smithy drew the wrong number of cards, 2 instead of 3
+council room only drew cards for half the players, and those players had hands with only 0 cards?
