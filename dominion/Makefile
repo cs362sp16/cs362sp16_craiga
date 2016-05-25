@@ -15,7 +15,23 @@ interface.o: interface.h interface.c
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player
+newdominion:
+	gcc   -c newdominion.c -g  $(CFLAGS)
+
+all: playdom player newdominion
+
+playdominion:
+	gcc playdominion.c -lm -coverage -o playdominion.out
+	./playdominion.out 42 > playdominion.txt
+playnewdominion:
+	gcc playnewdominion.c -lm -coverage -o playnewdominion.out
+	./playnewdominion.out 42 > playnewdominion.txt
+
+playalldominion: playnewdominion playdominion
+
+diffdominion: playalldominion
+	gcc diffdominion.c -lm -coverage -o diffdominion.out
+	./diffdominion.out > diffdominion.txt
 
 unittest1:
 	gcc unittest1.c -lm -coverage -o unittest1.out 
@@ -64,4 +80,4 @@ randomtestadventurer:
 randomresults.out: randomtestcard1 randomtestcard2 randomtestadventurer
 	gcov dominion.c >> unittestresults.out
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.a *.dSYM
+	rm -f *.out *.o playdom.exe playdom test.exe test player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.a *.dSYM

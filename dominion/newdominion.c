@@ -37,6 +37,7 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 		   struct gameState *state) {
 
+  
   int i;
   int j;
   int it;			
@@ -47,6 +48,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   //check number of players
   if (numPlayers > MAX_PLAYERS || numPlayers < 2)
     {
+      printf("players wrong\n");
       return -1;
     }
 
@@ -60,6 +62,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         {
 	  if (j != i && kingdomCards[j] == kingdomCards[i])
 	    {
+        printf("kingdomcard duplicate\n");
 	      return -1;
 	    }
         }
@@ -87,14 +90,14 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   //set number of Victory cards
   if (numPlayers == 2)
     {
-       
+     
       state->supplyCount[estate] = 8;
       state->supplyCount[duchy] = 8;
       state->supplyCount[province] = 8;
     }
   else
     {
-      
+     
       state->supplyCount[estate] = 12;
       state->supplyCount[duchy] = 12;
       state->supplyCount[province] = 12;
@@ -429,7 +432,7 @@ int scoreFor (int player, struct gameState *state) {
       if (state->hand[player][i] == duchy) { score = score + 3; };
       if (state->hand[player][i] == province) { score = score + 6; };
       if (state->hand[player][i] == great_hall) { score = score + 1; };
-      if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+      if (state->hand[player][i] == gardens) { score = score + ( (state->deckCount[state->whoseTurn]+state->discardCount[state->whoseTurn]+state->handCount[state->whoseTurn])/ 10 ); };
     }
 
   //score from discard
@@ -440,7 +443,7 @@ int scoreFor (int player, struct gameState *state) {
       if (state->discard[player][i] == duchy) { score = score + 3; };
       if (state->discard[player][i] == province) { score = score + 6; };
       if (state->discard[player][i] == great_hall) { score = score + 1; };
-      if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+      if (state->discard[player][i] == gardens) { score = score + (  (state->deckCount[state->whoseTurn]+state->discardCount[state->whoseTurn]+state->handCount[state->whoseTurn]) / 10 ); };
     }
 
   //score from deck
@@ -451,7 +454,7 @@ int scoreFor (int player, struct gameState *state) {
       if (state->deck[player][i] == duchy) { score = score + 3; };
       if (state->deck[player][i] == province) { score = score + 6; };
       if (state->deck[player][i] == great_hall) { score = score + 1; };
-      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+      if (state->deck[player][i] == gardens) { score = score + (  (state->deckCount[state->whoseTurn]+state->discardCount[state->whoseTurn]+state->handCount[state->whoseTurn]) / 10 ); };
     }
 
   return score;

@@ -1,0 +1,5 @@
+Well because their dominion had a repaired version of scoreFor that correctly counted the number of total cards towards Garden's score their dominion would output a higher score for a player whenever they purchased a garden. The bug was apparent becasue I knew how the codes differed but would have been nearly infeasable to differentiate without that data.
+
+This is not an ideal case for differential testing because both codes share the same base code and its many flaws.
+
+The coverage was shy of 60% on first try but reached it after several attempts. code coverage was similar on both versions of dominion.
