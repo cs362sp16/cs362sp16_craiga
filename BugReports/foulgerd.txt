@@ -1,0 +1,6 @@
+How to reproduce bug:
+
+When using the card Sea Hag, instead of putting the curse at the top of the deck it replaces the top card of the deck and reduces the total deck size by one, instead of having it remain the same size.
+
+Severity:High
+Fixability:Easy

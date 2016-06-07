@@ -1,0 +1,23 @@
+After Unit testing the Smithy card, I found that the hand did not change size correctly. It increased by 2 cards instead of 3 cards. After reviewing the code I realized that the for loop size had changed during refactoring and that it only iterated 2 times instead of 3. 
+
+Assertion testing for size 7 hand, finds size 6
+----------------
+FAILED ASSERTION: actual=6 expected=7
+Test Failed.
+----------------
+
+To fix this I replaced the code of 
+------------------
+for (i = 0; i < 2; i++)
+------------------
+with
+------------------
+for (i = 0; i < 3; i++)
+------------------
+Thus iterating the code the correct number of times
+
+
+Causing the assertion test to pass
+----------------
+TEST SUCCESSFULLY COMPLETED.
+----------------

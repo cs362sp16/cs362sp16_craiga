@@ -43,7 +43,7 @@ int main() {
 	
 	assertEqu(numHandCards(g),5);
 	cardEffect(smithy,0,0,0,g,0,foo);
-	assertEqu(numHandCards(g),7);
+	assertEqu(numHandCards(g),8);
 	
 	checkasserts();
 	return 0;

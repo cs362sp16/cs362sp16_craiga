@@ -45,19 +45,19 @@ int main() {
 	{
 	  if ( i != whoseTurn(g) )
 	    {
-	      assertEqu(g->handCount[i],6);
+	      assertEqu(g->handCount[i],0);
 	    }
 	}
 	assertEqu(numHandCards(g),5);
 	assertEqu(g->numBuys,1);
 	cardEffect(council_room,0,0,0,g,0,foo);
-	assertEqu(numHandCards(g),8);
+	assertEqu(numHandCards(g),9);
 	assertEqu(g->numBuys,2);
 	for (i = 0; i < g->numPlayers; i++)
 	{
 	  if ( i != whoseTurn(g) )
 	    {
-	      assertEqu(g->handCount[i],6);
+	      assertEqu(g->handCount[i],1);
 	    }
 	}
 	

@@ -1,0 +1,6 @@
+How to reproduce bug:
+
+I found that the salvager card did not update the count of the number of discarded cards despite the fact that it discarded itself.
+
+Severity:high
+Fixability: moderately hard

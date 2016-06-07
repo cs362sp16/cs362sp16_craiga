@@ -10,7 +10,7 @@
 #include <assert.h>
 #include <string.h>
 #include <time.h>
-//testing newGame
+//testing compare
  
 int failed = 0;
 
