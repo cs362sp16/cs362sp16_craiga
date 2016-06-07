@@ -21,3 +21,20 @@ Causing the assertion test to pass
 ----------------
 TEST SUCCESSFULLY COMPLETED.
 ----------------
+
+In terms of agans principles
+Understand the system: I understood the principle of the smithy card completely down to every line of code and what the card was supposed to do.
+
+Make it fail:It failed quite nicely on its own
+
+Quit thinking and look: I looked over the entirety of the code before trying to address the problem
+
+Change one thing at a time: N/A
+
+Keep an audit trail: I documented that I had actually refactored this code before it was broken
+
+Check the plug: I questioned my grasp of for loops
+
+Get a fresh view: I googled how for loop worked
+
+If you didn't fix it, it ain't fixed: I remembered how to count to 3 and replaced the incriminating integer
