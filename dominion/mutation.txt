@@ -1,0 +1,5 @@
+Mutation testing
+	
+	For my mutation testing I spent many long hours trying to make other mutation tools work and was unable to get them to work. So with very little time left I built my own tool. Sadly this left no time for building a differential program to test them against my existing code. However by simply typing “make mutants” the mutant generator will develop 26 new mutants by replacing random integers within the dominion.c code with 0. An attempt will then be made to compile each of these mutants.
+	
+	I was able to manually test many of these mutants myself by changing the hardcoded value in the diffdominion, and I found that pretty much any that compiled would usually also pass the differential testing. This leads me to believe that my differential testing is pretty rubbish.
